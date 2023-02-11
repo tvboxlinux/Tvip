@@ -1,0 +1,10 @@
+<settings>
+<category label="Datos del servidor">
+     <setting id="Username" type="text" label="Nombre de usuario" default=""/>
+     <setting id="Password" type="text" label="Clave de acceso" default=""/>
+     <setting id="host" type="text" label="Servidor" default="http://"/>
+     <setting id="port" type="text" label="Puerto" default=""/>
+     <setting id="meta" type="bool" label="Metadatos del servidor" default="true"/>
+     <setting id="hidexxx" type="bool" label="Activar canales para adultos" default="false"/>
+</category>
+</settings>
