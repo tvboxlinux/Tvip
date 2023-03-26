@@ -26,7 +26,7 @@ try:
 except:
     from pysqlite2 import dbapi2 as database
 
-import control
+from . import control
 
 
 def get(function, timeout, *args, **table):

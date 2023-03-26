@@ -72,31 +72,32 @@ except ImportError:
         if 70 - 70: OoO0O00.OoO0O00 - OoO0O00 / I1ii11iIi11i * ooO0oo0oO0
         if 86 - 86: i11iIiiIii + II1Ii1iI1i + OOO0O * i111I + o0oOOo0O0Ooo
 try:
-    from urllib2 import urlopen, Request, HTTPError, URLError
+    from urllib.request import urlopen, Request
+    from urllib.error import HTTPError, URLError
 except ImportError:
     from urllib.request import urlopen, Request, HTTPError, URLError
 
     if 61 - 61: OoO0O00 / i11iIiiIii
 try:
-    from httplib import HTTPConnection, HTTPSConnection
+    from http.client import HTTPConnection, HTTPSConnection
 except ImportError:
     from http.client import HTTPConnection, HTTPSConnection
 
     if 34 - 34: OoooooooOO + iIii1I11I1II1 + i11iIiiIii - I1ii11iIi11i + i11iIiiIii
 try:
-    from Queue import Queue
+    from queue import Queue
 except ImportError:
     from queue import Queue
 
     if 65 - 65: OoOoOO00
 try:
-    from urlparse import urlparse
+    from urllib.parse import urlparse
 except ImportError:
     from urllib.parse import urlparse
 
     if 6 - 6: I1IiiI / Oo0Ooo % II1Ii1iI1i
 try:
-    from urlparse import parse_qs
+    from urllib.parse import parse_qs
 except ImportError:
     try:
         from urllib.parse import parse_qs
@@ -130,7 +131,7 @@ except ImportError:
             if 74 - 74: o0oOoO00o * O0
 
         def oOOo0oo(data):
-            if not isinstance(data, basestring):
+            if not isinstance(data, str):
                 data = str(data)
             Ooo.write(data)
             if 80 - 80: i111I * i11iIiiIii / o0ooo
@@ -138,13 +139,13 @@ except ImportError:
         I11II1i = False
         IIIII = kwargs.pop("sep", None)
         if IIIII is not None:
-            if isinstance(IIIII, unicode):
+            if isinstance(IIIII, str):
                 I11II1i = True
             elif not isinstance(IIIII, str):
                 raise TypeError("sep must be None or a string")
         ooooooO0oo = kwargs.pop("end", None)
         if ooooooO0oo is not None:
-            if isinstance(ooooooO0oo, unicode):
+            if isinstance(ooooooO0oo, str):
                 I11II1i = True
             elif not isinstance(ooooooO0oo, str):
                 raise TypeError("end must be None or a string")
@@ -152,12 +153,12 @@ except ImportError:
             raise TypeError("invalid keyword arguments to print()")
         if not I11II1i:
             for IIiiiiiiIi1I1 in args:
-                if isinstance(IIiiiiiiIi1I1, unicode):
+                if isinstance(IIiiiiiiIi1I1, str):
                     I11II1i = True
                     break
         if I11II1i:
-            I1IIIii = unicode("\n")
-            oOoOooOo0o0 = unicode(" ")
+            I1IIIii = str("\n")
+            oOoOooOo0o0 = str(" ")
         else:
             I1IIIii = "\n"
             oOoOooOo0o0 = " "
@@ -314,7 +315,7 @@ def oO00OOoO00(files, quiet=False):
             while OoOO000.isAlive():
                 OoOO000.join(timeout=0.1)
             ii1Ii11I.append(sum(OoOO000.result))
-            print ((sum(ii1Ii11I) / (timeit.default_timer() - i1I1iI1iIi111i)) / 1000 / 1000) * 8
+            print(((sum(ii1Ii11I) / (timeit.default_timer() - i1I1iI1iIi111i)) / 1000 / 1000) * 8)
             del OoOO000
             if 1 - 1: II111iiii
 
@@ -390,7 +391,7 @@ def o0iI11I1II(url, sizes, quiet=False):
             while OoOO000.isAlive():
                 OoOO000.join(timeout=0.1)
             ii1Ii11I.append(OoOO000.result)
-            print ((sum(ii1Ii11I) / (timeit.default_timer() - i1I1iI1iIi111i)) / 1000 / 1000) * 8
+            print(((sum(ii1Ii11I) / (timeit.default_timer() - i1I1iI1iIi111i)) / 1000 / 1000) * 8)
             del OoOO000
             if 8 - 8: OoO0O00 - I1IiiI % II1Ii1iI1i * OoooooooOO - OoO0O00 * o0ooo
 
@@ -448,7 +449,7 @@ def O0Oo0oOOoooOOOOo():
                 'times': ii1I1.find('times').attrib,
                 'download': ii1I1.find('download').attrib,
                 'upload': ii1I1.find('upload').attrib}
-        except Exception, iii:
+        except Exception as iii:
             xbmc.log('Exception for ET: ' + str(iii), level=xbmc.LOGDEBUG)
             ii1I1 = DOM.parseString(''.join(OOoOO0o0o0))
             OooooOOoo0 = {
@@ -495,7 +496,7 @@ def i1iI(client, all=False):
                 try:
                     ii1I1 = ET.fromstring(''.encode().join(i1I1i111Ii))
                     ooo = ii1I1.getiterator('server')
-                except Exception, iii:
+                except Exception as iii:
                     xbmc.log('Exception for ET: ' + str(iii), level=xbmc.LOGDEBUG)
                     ii1I1 = DOM.parseString(''.join(i1I1i111Ii))
                     ooo = ii1I1.getElementsByTagName('server')
@@ -662,7 +663,7 @@ def OOoo(list=False, mini=None, server=None, share=False, simple=False, src=None
                 if 82 - 82: oooO0oo0oOOOO / iIii1I11I1II1.I1IiiI.ooO0oo0oO0 / o0oOOo0O0Ooo
                 if 42 - 42: Oo0Ooo
             try:
-                unicode()
+                str()
                 Ii11iI1i('\n'.join(I1i11i).encode('utf-8', 'ignore'))
             except NameError:
                 Ii11iI1i('\n'.join(I1i11i))
@@ -679,8 +680,7 @@ def OOoo(list=False, mini=None, server=None, share=False, simple=False, src=None
         if 46 - 46: Oo0Ooo
     if server:
         try:
-            IIIIiIiIi1 = II1iIi11(filter(lambda i1II1I1Iii1: i1II1I1Iii1['id'] == server,
-                                         i111iIi1i1II1))
+            IIIIiIiIi1 = II1iIi11([i1II1I1Iii1 for i1II1I1Iii1 in i111iIi1i1II1 if i1II1I1Iii1['id'] == server])
         except IndexError:
             iIIiiiI.close()
             Ii11iI1i('Invalid server ID')
@@ -718,7 +718,7 @@ def OOoo(list=False, mini=None, server=None, share=False, simple=False, src=None
                         Ii1II1I11i1 = [O0o0O0]
                         break
         if not o0OO0o0o00o or not Ii1II1I11i1:
-            Ii11iI1i('Proporcione la URL completa de su servidor Speedtest Mini')
+            Ii11iI1i('Please provide the full URL of your Speedtest Mini server')
             sys.exit(1)
         i111iIi1i1II1 = [{
             'sponsor': 'Speedtest Mini',
@@ -746,7 +746,7 @@ def OOoo(list=False, mini=None, server=None, share=False, simple=False, src=None
         if 29 - 29: i111I / II111iiii / OOO0O * ooO0oo0oO0
         if 10 - 10: o0ooo % I11iii11IIi * I11iii11IIi.i111I / II1Ii1iI1i % ooO0oo0oO0
         try:
-            unicode()
+            str()
             oo0[0] = oo0[1]
             oo0[1] = oo0[2]
             oo0[2] = ('Hosted by %(sponsor)s (%(name)s) [%(d)0.2f km]: %(latency)s ms' % IIIIiIiIi1).encode('utf-8',
@@ -899,10 +899,10 @@ class i11iI11iIiIi(xbmcgui.WindowDialog):
         i1i1IIIIi1i = oO0oO0.yesno("Save Result", "Would you like to save a copy of this speed test?", "", "")
         if i1i1IIIIi1i:
             self.location = oO0oO0.browse(3, 'Where would you like to save the result?', 'files', '', False, False, '')
-            print 'self.location'
-            print self.location
-            import urllib
-            Ii11iiI = urllib.URLopener()
+            print('self.location')
+            print(self.location)
+            import urllib.request, urllib.parse, urllib.error
+            Ii11iiI = urllib.request.URLopener()
             Ii11iiI.retrieve('https://www.speedtest.net/result/%s.png' % O00o0o0000o0o,
                              self.location + "%s.png" % O00o0o0000o0o)
             oO0oO0.ok("Result Saved!", "'%s.png'" % O00o0o0000o0o + " was saved to '" + self.location + "'")
@@ -938,10 +938,10 @@ class O000OOO0OOo(xbmcgui.WindowDialog):
         i1i1IIIIi1i = oO0oO0.yesno("Save Result", "Would you like to save a copy of this speed test?", "", "")
         if i1i1IIIIi1i:
             self.location = oO0oO0.browse(3, 'Where would you like to save the result?', 'files', '', False, False, '')
-            print 'self.location'
-            print self.location
-            import urllib
-            Ii11iiI = urllib.URLopener()
+            print('self.location')
+            print(self.location)
+            import urllib.request, urllib.parse, urllib.error
+            Ii11iiI = urllib.request.URLopener()
             Ii11iiI.retrieve('https://www.speedtest.net/result/4670696458.png', self.location + "4670696458.png")
             oO0oO0.ok("Result Saved!", "'4670696458.png'" + " was saved to '" + self.location + "'")
         oO0oO0.ok("Result Saved!", "Thank you for using Ookla Speedtest.net")
@@ -1274,7 +1274,7 @@ class oO(xbmcgui.Window):
             Oo000ooOOO = urlopen(ii1ii11).readline().strip(' \t\n\r')
         except:
             Oo000ooOOO = self.default_advertisement
-        print Oo000ooOOO
+        print(Oo000ooOOO)
         if 84 - 84: O0.i111I - II111iiii.OOO0O / II111iiii
         iii1 = 1280
         I1i = 720
@@ -1475,7 +1475,7 @@ class oO(xbmcgui.Window):
                     if 84 - 84: II1Ii1iI1i / I11iii11IIi
                     if 86 - 86: OoOoOO00 * II111iiii - O0.OoOoOO00 % iIii1I11I1II1 / ooO0oo0oO0
                 try:
-                    unicode()
+                    str()
                     Ii11iI1i('\n'.join(I1i11i).encode('utf-8', 'ignore'))
                 except NameError:
                     Ii11iI1i('\n'.join(I1i11i))
@@ -1493,8 +1493,7 @@ class oO(xbmcgui.Window):
             if 23 - 23: o0oOoO00o + i111I.OoOoOO00 * I1IiiI + I1ii11iIi11i
         if server:
             try:
-                IIIIiIiIi1 = II1iIi11(filter(lambda i1II1I1Iii1: i1II1I1Iii1['id'] == server,
-                                             i111iIi1i1II1))
+                IIIIiIiIi1 = II1iIi11([i1II1I1Iii1 for i1II1I1Iii1 in i111iIi1i1II1 if i1II1I1Iii1['id'] == server])
             except IndexError:
                 Ii11iI1i('Invalid server ID')
                 return False
@@ -1531,7 +1530,7 @@ class oO(xbmcgui.Window):
                             Ii1II1I11i1 = [O0o0O0]
                             break
             if not o0OO0o0o00o or not Ii1II1I11i1:
-                Ii11iI1i('Proporcione la URL completa de su servidor Speedtest Mini')
+                Ii11iI1i('Please provide the full URL of your Speedtest Mini server')
                 return False
             i111iIi1i1II1 = [{
                 'sponsor': 'Speedtest Mini',
@@ -1559,7 +1558,7 @@ class oO(xbmcgui.Window):
             if 52 - 52: ooO0oo0oO0 - o0oOoO00o * oooO0oo0oOOOO
             if 17 - 17: OoooooooOO + ooO0oo0oO0 * i111I * OoOoOO00
             try:
-                unicode()
+                str()
                 oo0.append(
                     ('Hosted by %(sponsor)s (%(name)s) [%(d)0.2f km]: %(latency)s ms' % IIIIiIiIi1).encode('utf-8',
                                                                                                            'ignore'))
@@ -1732,7 +1731,7 @@ class iIOo0O:
 
     def GASend(self):
         try:
-            from urllib import urlencode
+            from urllib.parse import urlencode
             self.google.request("POST", "/collect", urlencode(self.Params), self.Headers)
         except:
             return - 1
@@ -1755,7 +1754,7 @@ class iIOo0O:
         self.buildParams()
         self.Body = [("t", "event"), ("ec", EventCatagory), ("ea", EventAction)]
         self.Params = self.Params + self.Body
-        print self.Params
+        print(self.Params)
         if 24 - 24: Oo0Ooo - i1IIi + i111I
         self.GASend()
         return self.GAResponse()
@@ -1775,7 +1774,7 @@ class iIOo0O:
         self.buildParams()
         self.Body = [("t", "pageview"), ("dh", DocumentHost), ("dp", DocumentPath), ("dt", DocumentTitle)]
         self.Params = self.Params + self.Body
-        print self.Params
+        print(self.Params)
         if 45 - 45: I1ii11iIi11i + II111iiii * i11iIiiIii
         self.GASend()
         return self.GAResponse()
@@ -1806,7 +1805,7 @@ def iii1III1i():
             O0oooo0OoO0oo = open(iiiIi, "w")
             O0oooo0OoO0oo.write(str(IiiiIi1iI1iI))
             O0oooo0OoO0oo.close()
-        except Exception, iii:
+        except Exception as iii:
             xbmc.log('Exception generating UUID cookie: ' + str(iii), level=xbmc.LOGDEBUG)
     return IiiiIi1iI1iI
     if 60 - 60: I1ii11iIi11i - oooO0oo0oOOOO - I1IiiI / o0oOOo0O0Ooo
@@ -1819,12 +1818,12 @@ class oooo00i1(object):
         if 38 - 38: i1IIi + II1Ii1iI1i
         if 91 - 91: II111iiii % o0oOoO00o % I11iii11IIi + II111iiii / oooO0oo0oOOOO
         ooooOooo0 = 'http://www.youtube.com/get_video_info?video_id='
-        if 'http://www.youtube.com/watch?v' in parse_qs(video_url).keys():
+        if 'http://www.youtube.com/watch?v' in list(parse_qs(video_url).keys()):
             ooooOooo0 += parse_qs(video_url)['http://www.youtube.com/watch?v'][0]
-        elif 'https://www.youtube.com/watch?v' in parse_qs(video_url).keys():
+        elif 'https://www.youtube.com/watch?v' in list(parse_qs(video_url).keys()):
             ooooOooo0 = 'https://www.youtube.com/get_video_info?video_id=' + \
                         parse_qs(video_url)['https://www.youtube.com/watch?v'][0]
-        elif 'v' in parse_qs(video_url).keys():
+        elif 'v' in list(parse_qs(video_url).keys()):
             ooooOooo0 += parse_qs(video_url)['v'][0]
         else:
             sys.exit('Error : Invalid Youtube URL Passing %s' % video_url)
@@ -2536,7 +2535,7 @@ class oO0ooOO(xbmcgui.WindowXMLDialog):
                     if 69 - 69: OOO0O - o0oOOo0O0Ooo.OOO0O
                     if 9 - 9: oooO0oo0oOOOO % i11iIiiIii / Oo0Ooo
                 try:
-                    unicode()
+                    str()
                     Ii11iI1i('\n'.join(I1i11i).encode('utf-8', 'ignore'))
                 except NameError:
                     Ii11iI1i('\n'.join(I1i11i))
@@ -2554,8 +2553,7 @@ class oO0ooOO(xbmcgui.WindowXMLDialog):
             if 45 - 45: O0.i11iIiiIii % o0oOoO00o.OoOoOO00 % I11iii11IIi % iIii1I11I1II1
         if server:
             try:
-                IIIIiIiIi1 = II1iIi11(filter(lambda i1II1I1Iii1: i1II1I1Iii1['id'] == server,
-                                             i111iIi1i1II1))
+                IIIIiIiIi1 = II1iIi11([i1II1I1Iii1 for i1II1I1Iii1 in i111iIi1i1II1 if i1II1I1Iii1['id'] == server])
             except IndexError:
                 Ii11iI1i('Invalid server ID')
                 return False
@@ -2592,7 +2590,7 @@ class oO0ooOO(xbmcgui.WindowXMLDialog):
                             Ii1II1I11i1 = [O0o0O0]
                             break
             if not o0OO0o0o00o or not Ii1II1I11i1:
-                Ii11iI1i('Proporcione la URL completa de su servidor Speedtest Mini')
+                Ii11iI1i('Please provide the full URL of your Speedtest Mini server')
                 return False
             i111iIi1i1II1 = [{
                 'sponsor': 'Speedtest Mini',
@@ -2620,7 +2618,7 @@ class oO0ooOO(xbmcgui.WindowXMLDialog):
             if 13 - 13: OoO0O00
             if 70 - 70: o0ooo + O0.oooO0oo0oOOOO * II1Ii1iI1i
             try:
-                unicode()
+                str()
                 oo0.append(
                     ('Hosted by %(sponsor)s (%(name)s) [%(d)0.2f km]: %(latency)s ms' % IIIIiIiIi1).encode('utf-8',
                                                                                                            'ignore'))
@@ -2753,7 +2751,7 @@ class oO0ooOO(xbmcgui.WindowXMLDialog):
             oOOo00O0OOOo.close()
             oo0.append('Results saved: %s' % self.image_result)
             self.update_textbox(oo0)
-            print oo0
+            print(oo0)
             if 4 - 4: II1Ii1iI1i + OoOoOO00 % I1ii11iIi11i / i11iIiiIii
             if 74 - 74: II111iiii.O0 - I1IiiI + I11iii11IIi % i11iIiiIii % OoOoOO00
             if 78 - 78: II1Ii1iI1i + OoOoOO00 + I11iii11IIi - I11iii11IIi.i11iIiiIii / OoO0O00

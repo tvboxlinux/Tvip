@@ -17,7 +17,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.xtreamcodes" name="Xtreamcodes" version="3.2.8" provider-name="Ottlinux">
+<addon id="plugin.video.xtreamcodes" name="Xtreamcodes" version="4.8.7" provider-name="Ottlinux">
   <requires>
         <import addon="script.module.six" />
         <import addon="script.module.requests" />
@@ -32,6 +32,10 @@
     <language>es</language>
     <description lang="en">Xtreamcodecs ui</description>
      <platform>all</platform>
+  <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+     </assets>
   </extension>
 </addon>
 

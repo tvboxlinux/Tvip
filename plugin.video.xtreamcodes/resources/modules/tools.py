@@ -1,5 +1,9 @@
-import os,re,sys,xbmc,json,base64,client,control,string,urllib,urlparse,requests,shutil,xbmcplugin,xbmcgui,socket
-ADDONTITLE     = 'Xtreamcodecs'
+import os,re,sys,json,base64,string,requests,shutil,socket
+from resources.modules import client,control
+import six
+from kodi_six import xbmc, xbmcaddon, xbmcplugin, xbmcgui, xbmcvfs
+from six.moves import urllib_parse, urllib_request, http_cookiejar
+ADDONTITLE     = 'SSTV'
 
 def regex_from_to(text, from_string, to_string, excluding=True):
 	if excluding:
@@ -16,11 +20,12 @@ def regex_get_all(text, start_with, end_with):
 	return r
 	
 def addDir(name,url,mode,iconimage,fanart,description):
-	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
+	u=sys.argv[0]+"?url="+urllib_parse.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib_parse.quote_plus(name)+"&iconimage="+urllib_parse.quote_plus(iconimage)+"&description="+urllib_parse.quote_plus(description)
 	ok=True
 	xbmc.log(str(u))
-	liz=xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
-	liz.setInfo( type="Video", infoLabels={"Title": name,"Plot":description,})
+	liz=xbmcgui.ListItem(name)
+	liz.setArt({ 'thumb': iconimage, 'icon': iconimage, 'fanart': fanart}) 
+	liz.setInfo( type="Video", infoLabels={"Title": name,"Plot":description})
 	liz.setProperty('fanart_image', fanart)
 	if mode==4:
 		liz.setProperty("IsPlayable","true")
@@ -35,9 +40,10 @@ def addDir(name,url,mode,iconimage,fanart,description):
 	xbmcplugin.endOfDirectory
 	
 def addDirMeta(name,url,mode,iconimage,fanart,description,year,cast,rating,runtime,genre):
-	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
+	u=sys.argv[0]+"?url="+urllib_parse.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib_parse.quote_plus(name)+"&iconimage="+urllib_parse.quote_plus(iconimage)+"&description="+urllib_parse.quote_plus(description)
 	ok=True
-	liz=xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
+	liz=xbmcgui.ListItem(name)
+	liz.setArt({ 'thumb': iconimage, 'icon': iconimage, 'fanart': fanart})
 	liz.setInfo( type="Video", infoLabels={"Title": name,"Plot":description,"Rating":rating,"Year":year,"Duration":runtime,"Cast":cast,"Genre":genre})
 	liz.setProperty('fanart_image', fanart)
 	liz.setProperty("IsPlayable","true")
@@ -53,14 +59,13 @@ def OPEN_URL(url):
 	headers = {}
 	headers['User-Agent'] = 'TheWizardIsHere'
 	link = requests.session().get(url, headers=headers, verify=False).text
-	link = link.encode('ascii', 'ignore')
 	return link
 
 
 def clear_cache():
 	xbmc.log('CLEAR CACHE ACTIVATED')
-	xbmc_cache_path = os.path.join(xbmc.translatePath('special://home'), 'cache')
-	confirm=xbmcgui.Dialog().yesno("Confirme el proceso","Confirme que desea limpiar el cache","","","Cancelar","Limpiar")
+	xbmc_cache_path = os.path.join(control.transPath('special://home'), 'cache')
+	confirm=xbmcgui.Dialog().yesno("Please Confirm","Please Confirm You Wish To Delete Your Kodi Application Data",nolabel="Cancel",yeslabel="Clear")
 	if confirm:
 		if os.path.exists(xbmc_cache_path)==True:
 			for root, dirs, files in os.walk(xbmc_cache_path):
@@ -82,7 +87,7 @@ def clear_cache():
 
 
 		dialog = xbmcgui.Dialog()
-		dialog.ok(ADDONTITLE, "Limpieza completa del cache del servidor!")
+		dialog.ok(ADDONTITLE, "Cache Cleared Successfully!")
 		xbmc.executebuiltin("Container.Refresh()")
 		
 def get_params():
@@ -151,9 +156,9 @@ class Trailer:
 
     def search(self, url):
         try:
-            query = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+            query = urllib_parse.parse_qs(urllib_parse.urlparse(url).query)['q'][0]
 
-            url = self.search_link % urllib.quote_plus(query) + self.key_link
+            url = self.search_link % urllib_parse.quote_plus(query) + self.key_link
 
             result = client.request(url)
 

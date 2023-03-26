@@ -19,10 +19,12 @@
 '''
 
 
-import re, urllib, json, urlparse, base64
+import re, json, base64
+import six
+from six.moves import urllib_parse
 
-import client
-import control
+from . import client
+from . import control
 
 
 class Trailer:
@@ -74,9 +76,9 @@ class Trailer:
 
     def search(self, url):
         try:
-            query = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+            query = urllib_parse.parse_qs(urllib_parse.urlparse(url).query)['q'][0]
 
-            url = self.search_link % urllib.quote_plus(query) + self.key_link
+            url = self.search_link % urllib_parse.quote_plus(query) + self.key_link
 
             result = client.request(url)
 
